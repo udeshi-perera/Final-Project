@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+
 @Service
 //@JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentServiceImpl implements PaymentService {
@@ -31,10 +33,10 @@ public class PaymentServiceImpl implements PaymentService {
     public Payment save(Payment payment) {
         OrderDetailDto orderDetail = restTemplate.getForObject("http://order/orderDetail/" + payment.getOrderId(), OrderDetailDto.class);
 
-        float totalAmount = 0;
-        for (int i = 0; i < orderDetail.getOrderDetailList().size(); i++) {
-            float a = orderDetail.getOrderDetailList().get(i).getPrice();
-            totalAmount = a + totalAmount;
+        BigDecimal totalAmount = new BigDecimal("0.00");
+        for (int listSize = 0; listSize < orderDetail.getOrderDetailList().size(); listSize++) {
+            BigDecimal sumOfOrderDetail = orderDetail.getOrderDetailList().get(listSize).getPrice();
+            totalAmount = sumOfOrderDetail.add(totalAmount);
         }
         payment.setFullPayment(totalAmount);
         System.out.println(totalAmount);
