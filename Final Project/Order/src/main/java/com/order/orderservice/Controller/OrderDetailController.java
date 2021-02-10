@@ -18,8 +18,15 @@ public class OrderDetailController {
 
 
     @RequestMapping(value = "/orderDetail", method = RequestMethod.POST)
-    public OrderDetail save(@RequestBody OrderDetail orderDetail) {
-        return orderDetailService.save(orderDetail);
+    public ResponseEntity save(@RequestBody OrderDetail orderDetail) {
+
+        OrderDetail newOrderDetail = orderDetailService.save(orderDetail);
+        try {
+            return ResponseEntity.ok().body(newOrderDetail);
+        } catch (NullPointerException nullPointerException) {
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Menu ID does not exist.");
+        }
+
     }
 
     @RequestMapping(value = "/orderDetail", method = RequestMethod.DELETE)
