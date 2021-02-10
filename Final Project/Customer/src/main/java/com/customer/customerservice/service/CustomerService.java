@@ -10,7 +10,7 @@ public interface CustomerService {
 
     Customer update(Customer customer);
 
-    List<Customer> findCustomerByMobileNNumber(String mobileNumber);
+    Customer findCustomerByMobileNNumber(String mobileNumber);
 
     List<Customer> fetchAllCustomer();
 }
