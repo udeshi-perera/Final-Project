@@ -3,7 +3,11 @@ package com.payment.paymentservice.controller;
 import com.payment.paymentservice.service.PaymentService;
 import commonproject.model.payment.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Null;
 
 @RestController
 public class PaymentController {
@@ -12,12 +16,23 @@ public class PaymentController {
     PaymentService paymentService;
 
     @RequestMapping(value = "/payment", method = RequestMethod.POST)
-    public Payment save(@RequestBody Payment payment) {
-        return paymentService.save(payment);
+    public ResponseEntity save(@RequestBody Payment payment) {
+        Payment newPayment=paymentService.save(payment);
+        try{
+            return ResponseEntity.ok(newPayment);
+        }catch (NullPointerException nullPOinterException){
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("OrderDetail ID is not exists");
+        }
     }
 
     @RequestMapping(value = "/payment/{id}", method = RequestMethod.GET)
-    public Payment fetchByOrderId(@PathVariable int id) {
-        return paymentService.fetchByOrderId(id);
+    public ResponseEntity fetchByOrderId(@PathVariable int id) {
+        Payment payment= paymentService.fetchByOrderId(id);
+        try{
+            return ResponseEntity.ok(payment);
+        }
+        catch (NullPointerException nullPOinterException){
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Order Id does not exist");
+        }
     }
 }

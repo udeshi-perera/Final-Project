@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 import java.math.BigDecimal;
 
 @Service
-//@JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentServiceImpl implements PaymentService {
 
     @LoadBalanced
