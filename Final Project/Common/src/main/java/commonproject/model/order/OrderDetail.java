@@ -23,8 +23,6 @@ public class OrderDetail {
     @NotNull
     private int menu;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "orderId")
     @NotNull
     private int orderId;
 
@@ -32,7 +30,6 @@ public class OrderDetail {
     private int quantity;
 
     @NotNull
-    private float price;
+    private BigDecimal price;
 
-    //private int menuId;
 }

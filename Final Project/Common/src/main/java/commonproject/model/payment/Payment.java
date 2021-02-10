@@ -19,5 +19,5 @@ public class Payment {
     @NotNull
     private int orderId;
 
-    private float fullPayment;
+    private BigDecimal fullPayment;
 }

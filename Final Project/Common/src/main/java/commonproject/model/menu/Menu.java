@@ -26,5 +26,5 @@ public class Menu {
     private FoodCategory foodCategory;
 
     @NotNull
-    private float pricePerItem;
+    private BigDecimal pricePerItem;
 }
