@@ -1,0 +1,92 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div style="text-align: center">
+    <h1>{{message}}</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+                <fieldset>
+                    <legend class="text-center">Valid information is required to register. <span class="req"><small>
+                                required *</small></span></legend>
+
+                    <div class="form-group">
+                        <label for="Name"><span class="req">* </span> Item Name: </label>
+                        <input required type="text" [(ngModel)]="menu.itemName" name="name" id="name"
+                            class="form-control phone" maxlength="28" placeholder="Enter Item Name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstname"><span class="req">* </span> Code </label>
+                        <input class="form-control" type="text" [(ngModel)]="menu.code" name="code" id="txt" required
+                            placeholder="Enter Item Code" />
+                        <div id="errFirst"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="category"><span class="req">* </span> Type </label>
+                            <br>
+                            <select class="form-control"  [(ngModel)]="menu.foodCategory" name="category">
+                               <option value="FOOD">Food</option>
+                              <option value="BEVERAGE">Beverage</option>
+                              <!-- <option *ngFor="let menu of menus; let i = index" [value]="menus[i].foodCategory">
+                                {{menus[i].foodCategory}}
+                              </option> -->
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname"><span class="req">* </span> Price per Item </label>
+                        <input class="form-control" type="text" [(ngModel)]="menu.pricePerItem" name="price" id="txt"
+                            placeholder="Enter Price per Item" required />
+                        <div id="errLast"></div>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-success" type="submit" name="submit_reg" value="Register" (click)="addMenu()">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <!-- col-md-offset-2 custyle -->
+
+        <div class="row col-md-6 ">
+            <div class="container text-right">
+                <div id="custom-search-input" >
+                                 <div class="input-group col-md-6" style="text-align: center">
+                                     <input type="text" class="search-query form-control" placeholder="Search With food code"  name="mobileNumber" [(ngModel)]="code"/>
+                                     <span class="input-group-btn">
+                                         <button class="btn btn-danger" type="button" (click)="findMenuByCOde()">
+                                             <span class=" glyphicon glyphicon-search"></span>
+                                         </button>
+                                     </span> 
+                                 </div>
+                             </div>
+     </div>
+            <table class="table table-striped custab">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Item Name</th>
+                    <th>Category</th>
+                    <th>Price of Item</th>
+                    <!-- <th>Action</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let menu of menus">
+                    <td>{{menu.code}}</td>
+                    <td>{{menu.itemName}}</td>
+                    <td>{{menu.foodCategory}}</td>
+                    <td>{{menu.pricePerItem}}</td>
+                   <!-- <td class="text-center"><button class="btn btn-danger btn-xs" (click)="delteUser(user.id)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td> --> 
+                  </tr>
+            </tbody> 
+            </table>
+            </div>
+
+    </div> 
+</div>
+
+
