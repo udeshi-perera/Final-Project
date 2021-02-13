@@ -3,6 +3,8 @@ package com.payment.paymentservice.service.impl;
 import com.payment.paymentservice.dto.OrderDetailDto;
 import com.payment.paymentservice.repository.PaymentRepository;
 import com.payment.paymentservice.service.PaymentService;
+import commonproject.model.order.Order;
+import commonproject.model.order.OrderDetail;
 import commonproject.model.payment.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -30,7 +32,9 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment save(Payment payment) {
-        OrderDetailDto orderDetail = restTemplate.getForObject("http://order/orderDetail/" + payment.getOrderId(), OrderDetailDto.class);
+        Order getOrderId=restTemplate.getForObject("http://order/services/order", Order.class);
+        payment.setOrderId(getOrderId.getId());
+        OrderDetailDto orderDetail = restTemplate.getForObject("http://order/services/orderDetail/" + payment.getOrderId(), OrderDetailDto.class);
 
         BigDecimal totalAmount = new BigDecimal("0.00");
         for (int listSize = 0; listSize < orderDetail.getOrderDetailList().size(); listSize++) {

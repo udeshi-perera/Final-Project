@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Null;
-
+@CrossOrigin(origins = "*")
 @RestController
 public class PaymentController {
 
@@ -16,13 +16,13 @@ public class PaymentController {
     PaymentService paymentService;
 
     @RequestMapping(value = "/payment", method = RequestMethod.POST)
-    public ResponseEntity save(@RequestBody Payment payment) {
-        Payment newPayment=paymentService.save(payment);
-        try{
-            return ResponseEntity.ok(newPayment);
-        }catch (NullPointerException nullPOinterException){
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("OrderDetail ID is not exists");
-        }
+    public Payment save(Payment payment) {
+       return paymentService.save(payment);
+//        try{
+//            return ResponseEntity.ok(newPayment);
+//        }catch (NullPointerException nullPOinterException){
+//            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("OrderDetail ID is not exists");
+//        }
     }
 
     @RequestMapping(value = "/payment/{id}", method = RequestMethod.GET)
