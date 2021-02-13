@@ -4,8 +4,13 @@ import com.menu.menuservice.repository.MenuRepository;
 import com.menu.menuservice.service.MenuService;
 import commonproject.model.menu.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,8 +19,15 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     MenuRepository menuRepository;
 
+    @LoadBalanced
+    @Bean
+    RestTemplate getRestTemplate(RestTemplateBuilder restTemplateBuilder) {
+        return restTemplateBuilder.build();
+    }
+
     @Override
     public Menu save(Menu menu) {
+        System.out.println(menu);
         return menuRepository.save(menu);
     }
 
@@ -40,5 +52,10 @@ public class MenuServiceImpl implements MenuService {
     public Menu fetch(int id) {
         Optional<Menu> optionalMenu = menuRepository.findById(id);
         return optionalMenu.get();
+    }
+
+    @Override
+    public List<Menu> findAllMenu() {
+        return menuRepository.findAll();
     }
 }

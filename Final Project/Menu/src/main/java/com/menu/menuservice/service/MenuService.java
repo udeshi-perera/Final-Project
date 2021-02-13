@@ -2,6 +2,8 @@ package com.menu.menuservice.service;
 
 import commonproject.model.menu.Menu;
 
+import java.util.List;
+
 public interface MenuService {
 
     Menu save(Menu menu);
@@ -13,4 +15,6 @@ public interface MenuService {
     void delete(Integer id);
 
     Menu fetch(int id);
+
+    List<Menu> findAllMenu();
 }

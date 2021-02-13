@@ -8,9 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class MenuController {
 
     @Autowired
@@ -18,6 +20,7 @@ public class MenuController {
 
     @RequestMapping(value = "/menu", method = RequestMethod.POST)
     public Menu save(@RequestBody Menu menu) {
+        System.out.println(menu);
         return menuService.save(menu);
     }
 
@@ -50,5 +53,10 @@ public class MenuController {
         } catch (NoSuchElementException noSuchElementException) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Menu Id is not existing");
         }
+    }
+
+    @RequestMapping(value = "/menu/menu-list", method = RequestMethod.GET)
+    public List<Menu> fetchAll() {
+        return menuService.findAllMenu();
     }
 }
