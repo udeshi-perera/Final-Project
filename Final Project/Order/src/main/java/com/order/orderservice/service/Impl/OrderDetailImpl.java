@@ -1,6 +1,7 @@
 package com.order.orderservice.service.Impl;
 
 import com.order.orderservice.repository.OrderDetailRepository;
+import com.order.orderservice.repository.OrderRepository;
 import com.order.orderservice.service.OrderDetailService;
 import commonproject.enumorator.Status;
 import commonproject.model.menu.Menu;
@@ -22,6 +23,9 @@ public class OrderDetailImpl implements OrderDetailService {
     @Autowired
     OrderDetailRepository orderDetailRepository;
 
+    @Autowired
+    OrderRepository orderRepository;
+
     @LoadBalanced
     @Bean
     RestTemplate getRestTemplate(RestTemplateBuilder restTemplateBuilder) {
@@ -34,6 +38,7 @@ public class OrderDetailImpl implements OrderDetailService {
     @Override
     public OrderDetail save(OrderDetail orderDetail) {
         Menu menu = restTemplate.getForObject("http://menu/menu/" + orderDetail.getMenu(), Menu.class);
+        orderDetail.setOrderId(orderRepository.findTopByOrderByIdDesc().getId());
         orderDetail.setStatus(Status.ACTIVE);
         BigDecimal unitPrice = menu.getPricePerItem();
         orderDetail.setPrice(unitPrice.multiply(BigDecimal.valueOf(orderDetail.getQuantity())));

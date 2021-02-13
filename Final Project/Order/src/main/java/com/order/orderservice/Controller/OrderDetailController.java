@@ -1,5 +1,6 @@
 package com.order.orderservice.Controller;
 
+import com.google.gson.Gson;
 import com.order.orderservice.dto.OrderDetailDto;
 import com.order.orderservice.service.OrderDetailService;
 import commonproject.model.order.OrderDetail;
@@ -10,22 +11,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
 
+@CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("services")
 public class OrderDetailController {
 
     @Autowired
     OrderDetailService orderDetailService;
 
+    @PostMapping("/orderDetail")
+    public OrderDetail save(@RequestBody OrderDetail orderDetail) {
+         return orderDetailService.save(orderDetail);
 
-    @RequestMapping(value = "/orderDetail", method = RequestMethod.POST)
-    public ResponseEntity save(@RequestBody OrderDetail orderDetail) {
-
-        OrderDetail newOrderDetail = orderDetailService.save(orderDetail);
-        try {
-            return ResponseEntity.ok().body(newOrderDetail);
-        } catch (NullPointerException nullPointerException) {
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Menu ID does not exist.");
-        }
+//        OrderDetail newOrderDetail = orderDetailService.save(new Gson().fromJson(orderDetail, OrderDetail.class));
+//        try {
+//            return ResponseEntity.ok().body(newOrderDetail);
+//        } catch (NullPointerException nullPointerException) {
+//            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Menu ID does not exist.");
+//        }
 
     }
 
