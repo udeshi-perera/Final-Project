@@ -11,14 +11,14 @@ export class ManageMenuService {
 
   public addMenu(menu):Observable<any>{
     console.log(menu);
-    return this.http.post("http://localhost:8080/menu",menu);
+    return this.http.post("http://localhost:8085/menu",menu);
   }
 
   public getAllMenu(){
-    return this.http.get("http://localhost:8080/menu-list");
+    return this.http.get("http://localhost:8085/menu/menu-list");
   }
 
   public viewMenuByCode(code){
-    return this.http.get("http://localhost:8080/menu?code="+code);
+    return this.http.get("http://localhost:8085/menu?code="+code);
   }
 }

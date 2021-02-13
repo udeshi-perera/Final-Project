@@ -11,10 +11,22 @@ export class ManageOrderService {
 
 
   public createOrder():Observable<any>{
-    return this.http.post("http://localhost:8082/order","");
+    return this.http.post("http://localhost:8085/services/order","");
   }
 
   public viewOrderDetails(){
-    return this.http.get("http://localhost:8082/order");
+    return this.http.get("http://localhost:8085/order");
+  }
+
+  public addOrderDetail(orderDetail):Observable<any>{
+    return this.http.post("http://localhost:8082/services/orderDetail",orderDetail);
+  }
+
+  public getMenuDetail(id){
+    return this.http.get("http://localhost:8085/menu/"+id);
+  }
+
+  public savePayment(){
+    return this.http.post("http://localhost:8085/payment","");
   }
 }

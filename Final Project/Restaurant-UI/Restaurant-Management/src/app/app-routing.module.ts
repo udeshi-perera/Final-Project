@@ -4,6 +4,7 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { HomeComponent } from './home/home.component';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { MenuComponent } from './menu/menu.component';
+import { PaymentComponent } from './payment/payment.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path:'order',
     component:ManageOrderComponent
+  },
+  {
+    path:'payment',
+    component:PaymentComponent
   }
 ];
 
