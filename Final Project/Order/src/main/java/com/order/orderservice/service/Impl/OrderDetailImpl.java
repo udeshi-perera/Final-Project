@@ -59,4 +59,15 @@ public class OrderDetailImpl implements OrderDetailService {
     public List<OrderDetail> findByOrderId(int id) {
         return orderDetailRepository.findByOrderId(id);
     }
+
+    @Override
+    public List<OrderDetail> findOrderDetail() {
+        int id=orderRepository.findTopByOrderByIdDesc().getId();
+        return orderDetailRepository.findByOrderId(id);
+    }
+
+//    public List<OrderDetail> findAllForOrderId(int id){
+//         orderRepository.findTopByOrderByIdDesc().getId();
+//        return orderDetailRepository.findByOrderId(id);
+//    }
 }

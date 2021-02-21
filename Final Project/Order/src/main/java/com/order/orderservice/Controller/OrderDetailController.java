@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @CrossOrigin(origins = "*")
@@ -47,6 +48,11 @@ public class OrderDetailController {
         OrderDetailDto orderList = new OrderDetailDto();
         orderList.setOrderDetailList(orderDetailService.findByOrderId(id));
         return orderList;
+    }
+
+    @RequestMapping(value = "/orderDetail", method = RequestMethod.GET)
+    public List<OrderDetail> fetchByOrderId() {
+        return orderDetailService.findOrderDetail();
     }
 
 }
