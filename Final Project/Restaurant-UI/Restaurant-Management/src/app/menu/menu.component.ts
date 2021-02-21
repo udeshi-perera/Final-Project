@@ -17,6 +17,9 @@ export class MenuComponent implements OnInit {
   constructor(private service:ManageMenuService) { }
 
   ngOnInit(): void {
+    this.service.refreshNeeded$.subscribe(()=>{
+      this.service.getAllMenu().subscribe((data)=>this.menus=data);
+    })
     this.service.getAllMenu().subscribe((data)=>this.menus=data);
   }
 

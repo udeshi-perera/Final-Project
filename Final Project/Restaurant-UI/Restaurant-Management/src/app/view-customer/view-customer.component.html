@@ -26,7 +26,7 @@
             <th>Name</th>
             <th>Mobile Number</th>
             <th>Email</th>
-            <!-- <th>Action</th> -->
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -35,10 +35,11 @@
             <td>{{customer.customerName}}</td>
             <td>{{customer.mobileNumber}}</td>
             <td>{{customer.email}}</td>
-            <!-- <td class="text-center"><button class="btn btn-danger btn-xs" (click)="delteUser(user.id)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td> -->
+            <!-- <a routerLink="/update/{{customer.id}}"></a> -->
+            <td class="text-center"><button class="btn btn-danger btn-xs"(click)="editCustomer(customer.id)"><span class="glyphicon glyphicon-remove"></span> Edit</button></td>
           </tr>
     </tbody>
-    </table>
+    </table> 
     </div>
 </div>
 

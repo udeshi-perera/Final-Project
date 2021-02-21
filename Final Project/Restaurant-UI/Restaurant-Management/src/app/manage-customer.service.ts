@@ -12,14 +12,18 @@ export class ManageCustomerService {
 
   public registerCustomer(customer):Observable<any>{
     console.log("this service call");
-    return this.http.post("http://localhost:8085/customer",customer,{responseType:'text' as 'json'});
+    return this.http.post("http://localhost:8081/customer",customer,{responseType:'text' as 'json'});
   }
 
   public viewCustomerByNumber(number){
-    return this.http.get("http://localhost:8085/customer/"+number);
+    return this.http.get("http://localhost:8081/customer/get/"+number);
   }
 
   public getAllCustomer(){
-    return this.http.get("http://localhost:8085/customer");
+    return this.http.get("http://localhost:8085/customer/");
+  }
+
+  public getCustomerData(id): Observable<Customer>{
+    return this.http.get<Customer>("http://localhost:8085/customer/"+id);
   }
 }
