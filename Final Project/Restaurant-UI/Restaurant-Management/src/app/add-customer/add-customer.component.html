@@ -5,7 +5,7 @@
     <h1>{{message}}</h1>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="currentUser; else loggedOut">
     <div class="row">
         <div class="col-md-6">
             <form name="customerForm">
@@ -33,12 +33,16 @@
                         <div id="errLast"></div>
                     </div>
                     <div class="form-group">
-                        <input class="btn btn-success" type="submit" name="submit_reg" value="Register" (click)="registerCustomer()">
+                        <input class="btn btn-success" type="submit" name="submit_reg" value="Register" (click)="registerCustomer();clearTextFields()">
                     </div>
                 </fieldset>
             </form>
         </div>
     </div>
 </div>
+
+<ng-template #loggedOut>
+    Please login.
+  </ng-template>
 
 

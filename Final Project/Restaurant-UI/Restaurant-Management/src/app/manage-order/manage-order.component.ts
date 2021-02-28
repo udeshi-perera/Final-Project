@@ -5,6 +5,7 @@ import { ManageMenuService } from '../manage-menu.service';
 import { OrderDetail } from '../orderDetail';
 import { Router} from '@angular/router'
 import { Observable } from 'rxjs';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-manage-order',
@@ -21,12 +22,14 @@ export class ManageOrderComponent implements OnInit {
   orderDetailList:any;
   orderDetails:any;
   total:any
+  currentUser: any;
 
-  constructor(private service:ManageOrderService,private menuService:ManageMenuService,private router:Router) { }
+  constructor(private service:ManageOrderService,private menuService:ManageMenuService,private router:Router,private token: TokenStorageService) { }
 
   ngOnInit(): void {
     this.getMenuList();
     this.getTotal(this.orderDetails);
+    this.currentUser = this.token.getUser();
   }
 
   public addOrderDetails(){
@@ -86,5 +89,15 @@ console.log(this.orderDetails);
     this.total=total
   
     return this.total;
+  }
+
+  deleteItem(id){
+    console.log(id);
+    this.service.refreshNeeded$.subscribe(()=>{
+      this.service.deleteOrderDetail(id).subscribe();
+      //this.getTotal(this.orderDetails);
+    })
+   // this.service.deleteOrderDetail(id).subscribe();
+    //this.getTotal(this.orderDetails);
   }
 }

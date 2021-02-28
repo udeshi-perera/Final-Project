@@ -20,6 +20,14 @@ import { MenuComponent } from './menu/menu.component';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { PaymentComponent } from './payment/payment.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { BoardUserComponent } from './board-user/board-user.component';
+import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
+import { ProfileComponent } from './profile/profile.component';
+
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+// import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +39,12 @@ import { LoginComponent } from './login/login.component';
     MenuComponent,
     ManageOrderComponent,
     PaymentComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    BoardAdminComponent,
+    BoardUserComponent,
+    BoardModeratorComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +60,7 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

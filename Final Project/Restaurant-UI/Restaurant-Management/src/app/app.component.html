@@ -1,5 +1,47 @@
 <app-root-nav>
   <router-outlet>
-    <!-- <p>hello</p> -->
   </router-outlet>
+
+
+
+
+
+  <div id="app">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <!-- <a href="#" class="navbar-brand">p</a> -->
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <!-- <li class="nav-item"> -->
+         <button mat-stroked-button color="primary"> <a href="/register" class="nav-link" routerLink="register">Sign Up</a></button>
+        <!-- </li> -->
+        <!-- <li class="nav-item"> -->
+          <button mat-stroked-button color="primary"> <a href="/login" class="nav-link" routerLink="login">Login</a></button>
+        <!-- </li> -->
+      </ul>
+  
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <!-- <li class="nav-item"> -->
+          <button mat-stroked-button color="primary"><a href="/profile" class="nav-link" routerLink="profile">My Profile</a></button>
+        <!-- </li>
+        <li class="nav-item"> -->
+          <button mat-stroked-button color="primary"> <a href class="nav-link" (click)="logout()">LogOut</a></button>
+        <!-- </li> -->
+      </ul>
+    </nav>
+  
+    <!-- <div class="container">
+      <router-outlet></router-outlet>
+    </div> -->
+
+  </div>
+
+
+
+
+
+
+ 
+
+
+
+  
 </app-root-nav>

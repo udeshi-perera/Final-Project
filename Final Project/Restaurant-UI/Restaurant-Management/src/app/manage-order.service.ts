@@ -47,4 +47,10 @@ export class ManageOrderService {
       this._refreshNeeded$.next();
     }));
   }
+
+  public deleteOrderDetail(id){
+    return this.http.delete("http://localhost:8082/services/orderDetail?id="+id).pipe(tap(()=>{
+      this._refreshNeeded$.next();
+    }));
+  }
 }

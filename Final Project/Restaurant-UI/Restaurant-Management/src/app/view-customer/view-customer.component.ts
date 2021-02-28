@@ -3,6 +3,7 @@ import { ManageCustomerService } from '../manage-customer.service';
 import { Router } from '@angular/router'
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-view-customer',
@@ -14,10 +15,13 @@ export class ViewCustomerComponent implements OnInit {
   mobileNumber:string;
   message:any;
   id:any;
-  constructor(private service:ManageCustomerService,private route:Router) { }
+  currentUser: any;
+
+  constructor(private service:ManageCustomerService,private route:Router,private token: TokenStorageService) { }
 
   ngOnInit(): void {
     this.service.getAllCustomer().subscribe((data)=>this.customers=data);
+    this.currentUser = this.token.getUser();
   }
 
   public findCustomerByNumber(){

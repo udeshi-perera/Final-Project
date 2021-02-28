@@ -2,7 +2,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container">
+<div class="container" *ngIf="currentUser; else loggedOut">
     <div class="row">
         <div class="col-md-4">
             <br>
@@ -80,7 +80,7 @@
                     <td class="text-center">{{orderDetail.quantity}}</td>
                     <!-- <td>{{orderDetail.price}}</td> -->
                     <td class="text-center">{{orderDetail.price}}</td>
-                    <td class="text-center"><button class="btn btn-danger btn-xs" (click)="delteUser(user.id)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
+                    <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deleteItem(orderDetail.id)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
                  </tr> 
                  <tr>
                     <th class="text-center">Total Amount</th>
@@ -92,5 +92,9 @@
 </div>
     </div> 
 </div>
+
+<ng-template #loggedOut>
+    Please login.
+  </ng-template>
 
  

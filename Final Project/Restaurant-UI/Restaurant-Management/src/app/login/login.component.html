@@ -1,37 +1,81 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!-- <div style="text-align: center">
-    <h1>{{message}}</h1>
-</div> -->
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <form> 
-                <fieldset>
-                    <legend class="text-center">Valid information is required to login. <span class="req"><small>
-                                required *</small></span></legend>
-
-                    <div class="form-group">
-                        <label for="Name"><span class="req">* </span> Username: </label>
-                        <input required type="text" name="name" id="name" [(ngModel)]="username"
-                            class="form-control phone" maxlength="28" placeholder="Enter username" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lastname"><span class="req">* </span> Password : </label>
-                        <input class="form-control" type="password" name="mobileNumber" id="txt" [(ngModel)]="password"
-                            placeholder="Enter Password" required />
-                        <div id="errLast"></div>
-                    </div>
-                    <div class="form-group">
-                        <input class="btn btn-success" type="submit" name="submit_reg" value="Login" (click)="logIn()">
-                    </div>
-                </fieldset>
-            </form>
+<!-- <div class="col-md-12"> -->
+  <div class="container">
+    <div class="col-md-6">
+      <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+    <form
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          #username="ngModel"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && username.invalid"
+        >
+          Username is required!
         </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && password.invalid"
+        >
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">
+          Login
+        </button>
+      </div>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && isLoginFailed"
+        >
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Logged in as {{ roles }}.
     </div>
+  </div>
+  </div>
 </div>
-
-

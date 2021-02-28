@@ -2,7 +2,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container">
+<div class="container" *ngIf="currentUser; else loggedOut">
     <div class="row">
                <div id="custom-search-input">
                                 <div class="input-group col-md-12" style="text-align: center">
@@ -17,7 +17,7 @@
     </div>
     </div>
 <div class="container">
-<div class="container">
+<div class="container" *ngIf="currentUser; else loggedOut">
     <div class="row col-md-6 col-md-offset-2 custyle">
     <table class="table table-striped custab">
     <thead>
@@ -43,5 +43,7 @@
     </div>
 </div>
 
-
+<ng-template #loggedOut>
+    Please login.
+  </ng-template>
 
