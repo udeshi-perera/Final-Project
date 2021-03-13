@@ -10,7 +10,7 @@ public interface MenuService {
 
     Menu update(Menu menu);
 
-    Menu findMenuByFoodCode(String code);
+    List<Menu> findMenuByFoodCode(String code);
 
     void delete(Integer id);
 

@@ -1,0 +1,23 @@
+version: "3"
+services:
+
+  menu:
+    image: mysql:8
+    networks:
+      - menu-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=udeshi123
+      - MYSQL_DATABASE=menu
+
+  menu-jdbc:
+    image: menu-jdbc
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://menu:3306/menu
+    networks:
+      - menu-mysql
+    depends_on:
+      - menu
+networks:
+  menu-mysql:

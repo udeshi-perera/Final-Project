@@ -31,7 +31,7 @@ public class MenuController {
     }
 
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
-    public Menu viewByMenuCode(@RequestParam(value = "code") String code) {
+    public List<Menu> viewByMenuCode(@RequestParam(value = "code") String code) {
         return menuService.findMenuByFoodCode(code);
     }
 

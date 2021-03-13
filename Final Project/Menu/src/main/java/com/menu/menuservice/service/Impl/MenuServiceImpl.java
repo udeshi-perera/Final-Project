@@ -39,7 +39,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu findMenuByFoodCode(String code) {
+    public List<Menu> findMenuByFoodCode(String code) {
         return menuRepository.findByCode(code);
     }
 
