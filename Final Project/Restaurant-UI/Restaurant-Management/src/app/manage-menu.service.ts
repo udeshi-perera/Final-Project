@@ -18,16 +18,16 @@ export class ManageMenuService {
 
   public addMenu(menu):Observable<any>{
     console.log(menu);
-    return this.http.post("http://localhost:8080/menu",menu).pipe(tap(()=>{
+    return this.http.post("http://localhost:8084/menu",menu).pipe(tap(()=>{
       this._refreshNeeded$.next();
     }));
   }
 
   public getAllMenu(){
-    return this.http.get("http://localhost:8080/menu/menu-list");
+    return this.http.get("http://localhost:8084/menu/menu-list");
   }
 
   public viewMenuByCode(code){
-    return this.http.get("http://localhost:8085/menu?code="+code);
+    return this.http.get("http://localhost:8084/menu?code="+code);
   }
 }

@@ -7,6 +7,10 @@ import { TokenStorageService } from './_services/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+
+  image: string="assets/res.png";
+  image2: string="assets/res1.jpg";
+
   private roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;

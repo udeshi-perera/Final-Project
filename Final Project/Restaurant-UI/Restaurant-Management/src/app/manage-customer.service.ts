@@ -20,10 +20,10 @@ export class ManageCustomerService {
   }
 
   public getAllCustomer(){
-    return this.http.get("http://localhost:8085/customer/");
+    return this.http.get("http://localhost:8081/customer/");
   }
 
   public getCustomerData(id): Observable<Customer>{
-    return this.http.get<Customer>("http://localhost:8085/customer/"+id);
+    return this.http.get<Customer>("http://localhost:8081/customer/"+id);
   }
 }

@@ -19,7 +19,7 @@ export class ManageOrderService {
 
 
   public createOrder():Observable<any>{
-    return this.http.post("http://localhost:8085/services/order","");
+    return this.http.post("http://localhost:8082/services/order","");
   }
 
   public viewOrderDetails(){
@@ -43,7 +43,7 @@ export class ManageOrderService {
   // }
 
   public getAllOrderDetail(){
-    return this.http.get("http://localhost:8085/services/orderDetail").pipe(tap(()=>{
+    return this.http.get("http://localhost:8082/services/orderDetail").pipe(tap(()=>{
       this._refreshNeeded$.next();
     }));
   }
