@@ -1,0 +1,16 @@
+version: "3"
+services:
+  token-db:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=udeshi123
+      - MYSQL_DATABASE=testdb
+
+  token-jdbc:
+    image: token-jdbc
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://token-db:3306/testdb
+    depends_on:
+      - token-db

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/testdb?createDatabaseIfNotExist=true
+    url: jdbc:mysql://token-db:3306/testdb?createDatabaseIfNotExist=true
     username: root
     password: udeshi123
   jpa:
