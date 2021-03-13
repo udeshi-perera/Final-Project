@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  discovery-server:
+    image: discovery-server
+    ports:
+      - 8761:8761
+
