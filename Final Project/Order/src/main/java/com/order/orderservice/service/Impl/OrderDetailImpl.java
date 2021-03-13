@@ -63,7 +63,7 @@ public class OrderDetailImpl implements OrderDetailService {
     @Override
     public List<OrderDetail> findOrderDetail() {
         int id=orderRepository.findTopByOrderByIdDesc().getId();
-        return orderDetailRepository.findByOrderId(id);
+        return orderDetailRepository.findByOrderIdAndStatus(id,Status.ACTIVE);
     }
 
 //    public List<OrderDetail> findAllForOrderId(int id){
